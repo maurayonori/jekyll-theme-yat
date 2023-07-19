@@ -45,7 +45,7 @@ $click-to-top-dark-color: {{ site.click_to_top.dark.color | default: "#bbb" }};
 
 /* Styles for contact form */
 #contactForm {
-  width: 100vw; /* this will make the form 80% of the viewport's width */
+  width: 80vw; /* this will make the form 80% of the viewport's width */
   max-width: $content-width;
   margin: 0 auto;
 }

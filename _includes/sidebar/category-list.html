@@ -5,5 +5,5 @@
 
 {% assign keys = categories %}
 {% assign field = 'categories' %}
-{% assign url = site.categories_path | relative_url %}
+{% assign url = site.categories_path | relative_url | default: '/categories.html' %}
 {% include sidebar/common-list.html %}

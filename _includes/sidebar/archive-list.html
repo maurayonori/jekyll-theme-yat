@@ -6,5 +6,5 @@
 
 {% assign keys = datetimes %}
 {% assign field = 'date' %}
-{% assign url = site.archive_path | relative_url %}
+{% assign url = site.archive_path | relative_url | default: '/archives.html' %}
 {% include sidebar/common-list.html %}

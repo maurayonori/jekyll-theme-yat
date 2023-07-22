@@ -5,5 +5,5 @@
 
 {% assign keys = tags %}
 {% assign field = 'tags' %}
-{% assign url = site.tags_path | relative_url %}
+{% assign url = site.tags_path | relative_url |default: '/tags.html' %}
 {%- include sidebar/common-list.html -%}

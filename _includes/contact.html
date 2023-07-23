@@ -1,40 +1,88 @@
-<form id="contactForm"
-  action="{{ site.google_form.url }}"
-  novalidate="novalidate" method="POST">
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Contact Us</title>
+    <!-- Import Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  </head>
 
-  <div class="row">
-    <div class="col-md-6">
-      <div class="form-group">
-        <input name="{{ site.google_form.name_entry }}" class="form-control" id="name" type="text"
-          placeholder="{{ site.data.sitetext[site.locale].contact.name | default: 'Name*' }}"
-          required="required" data-validation-required-message="{{ site.data.sitetext[site.locale].contact.name-validation | default: 'Please enter your name.' }}">
-        <p class="help-block text-danger"></p>
-      </div>
-      <div class="form-group">
-        <input name="{{ site.google_form.email_entry }}" class="form-control" id="email" type="email"
-          placeholder="{{ site.data.sitetext[site.locale].contact.email | default: 'Email*' }}"
-          required="required" data-validation-required-message="{{ site.data.sitetext[site.locale].contact.email-validation | default: 'Please enter your email address.' }}">
-        <p class="help-block text-danger"></p>
-      </div>
-      <div class="form-group">
-        <input name="{{ site.google_form.subject_entry }}" class="form-control" id="subject" type="tel"
-          placeholder="{{ site.data.sitetext[site.locale].contact.subject | default: 'subject *' }}"
-          required="required" data-validation-required-message="{{ site.data.sitetext[site.locale].contact.subject-validation | default: 'Please enter a subject.' }}">
-        <p class="help-block text-danger"></p>
-      </div>
+  <body>
+    <div class="container mt-5">
+      <h2>Contact Form</h2>
+
+      <form id="contactForm" action="{{ site.google_form.url }}" novalidate="novalidate" method="POST">
+        <div class="row">
+          <div class="col-md-12">
+            <!-- Name input field -->
+            <div class="form-group">
+              <input name="{{ site.google_form.name_entry }}" class="form-control form-control-lg" id="name" type="text" placeholder="Name*" required="required" data-validation-required-message="Please enter your name">
+              <p class="help-block text-danger"></p>
+            </div>
+
+            <!-- Email input field -->
+            <div class="form-group">
+              <input name="{{ site.google_form.email_entry }}" class="form-control form-control-lg" id="email" type="email" placeholder="Email*" required="required" data-validation-required-message="Please enter your email address.">
+              <p class="help-block text-danger"></p>
+            </div>
+
+            <!-- Subject input field -->
+            <div class="form-group">
+              <input name="{{ site.google_form.subject_entry }}" class="form-control form-control-lg" id="subject" type="tel" placeholder="Subject*" required="required" data-validation-required-message="Please enter a subject.">
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Message input field -->
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <textarea name="{{ site.google_form.message_entry }}" class="form-control form-control-lg" id="message" rows="5" placeholder="Inquiry Details*" required="required" data-validation-required-message="Please enter your inquiry."></textarea>
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="col-lg-12 text-center">
+          <div id="success"></div>
+          <button id="sendMessageButton" class="btn btn-primary btn-xl text-uppercase" type="submit">Send message</button>
+        </div>
+      </form>
     </div>
-    <div class="col-md-6">
-      <div class="form-group">
-        <textarea name="{{ site.google_form.message_entry }}" class="form-control" id="message"
-          placeholder="{{ site.data.sitetext[site.locale].contact.message | default: 'Message*' }}"
-          required="required" data-validation-required-message="{{ site.data.sitetext[site.locale].contact.message-validation | default: 'Please enter a message.' }}"></textarea>
-        <p class="help-block text-danger"></p>
-      </div>
-    </div>
-  </div>
-  <div class="clearfix"></div>
-  <div class="col-lg-12 text-center">
-    <div id="success"></div>
-    <button id="sendMessageButton" class="btn btn-primary btn-xl text-uppercase" type="submit">{{ site.data.sitetext[site.locale].contact.submit | default: "Send Message" }}</button>
-  </div>
-</form>
+
+    <!-- Import jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <!-- Import PopperJS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <!-- Import Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+      // Handling form submission event
+      document.getElementById("contactForm").addEventListener("submit", async function (event) {
+        event.preventDefault(); // Cancel default form submission action
+        
+        let formData = new FormData(event.target); // Get the form data
+
+        // Add logic to send form data
+        try {
+          let response = await fetch('{{ site.google_form.url }}', {
+            method: 'POST',
+            body: formData
+          });
+
+          if (response.ok) { // if HTTP-status is 200-299
+            // Get and show the result
+            alert("お問い合わせが送信されました。");
+          } else {
+            alert("送信エラーが発生しました。後ほどお試しください。");
+          }
+        } catch (error) {
+          alert("送信エラーが発生しました。後ほどお試しください。");
+        }
+      });
+    </script>
+  </body>
+</html>

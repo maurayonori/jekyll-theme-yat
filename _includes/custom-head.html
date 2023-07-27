@@ -1,3 +1,6 @@
+{%- if jekyll.environment == 'production' -%}
+{%- include extensions/advertisements.html -%}
+{%- endif -%}
 {% comment %}
   Placeholder to allow defining custom head, in principle, you can add anything here, e.g. favicons:
 

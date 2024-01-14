@@ -124,6 +124,11 @@ yat:
 # Custom color as below:
 # brand_color: "#1a8e42"
 
+# You can custom selection style
+# selection:
+#   color: "#ff00ff"
+#   background_color: "yellow"
+
 # Night/Dark mode
 # Default mode is "auto", "auto" is for auto nightshift
 # (19:00 - 07:00), "manual" is for manual toggle, and
@@ -186,8 +191,13 @@ google_form:
 #   heading_style: null     # Custom heading style (e.g. "font-weight: bold; text-decoration: underline")
 #   subheading_style: null  # Custom subheading style (e.g. color: gold)
 
-# Excerpt size setting
-# excerpt_size: 350
+# Excerpt settings
+# excerpt:
+#   default_image: /assets/images/default-image.jpeg  # Default image when the image style is not none
+#   image_style: z          # Image layout style (It's value could be none, left, right, top, z, z-reverse)
+#   image_width: 38.2%      # Image default width
+#   image_height: 160px     # Image default height
+#   text_size: 350          # Words default size
 
 # Pagination setting
 # paginate: 5
@@ -239,7 +249,7 @@ google_form:
 # Build settings
 # highlighter: none
 markdown: kramdown
-kmarkdown:
+kramdown:
   input: GFM
 
 plugins:

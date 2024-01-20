@@ -10,7 +10,24 @@
 
 .form-group {
     margin-bottom: 20px;
+
+    input,
+    textarea {
+      width: 100%; // 入力要素の幅を親要素に合わせます
+      box-sizing: border-box; // パディングとボーダーを要素の幅に含める
+    }
 }
+
+// レスポンシブデザインのためのメディアクエリ
+@media (max-width: 768px) {
+    .form-group {
+      input,
+      textarea {
+        width: 100%;
+        box-sizing: border-box;
+      }
+    }
+  }
 
 .form-control {
     width: 96%;
